@@ -21,4 +21,8 @@ pip install pygame-menu
 pip install numpy
 pip install matplotlib
 ```
+## Demo
+![Visualiser Demo 1200x800,200 elements](https://github.com/nandanhere/SortingVisualiser/blob/main/demo.gif)
+
+
 Run main.py in terminal or in a compiler of your choice.

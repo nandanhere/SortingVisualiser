@@ -6,13 +6,14 @@ from pygame.display import update
 from pygame.draw import rect
 import matplotlib.cm as cm
 import numpy as np
+# TODO : make the window resizable
 pygame.init()
 running = True
-w = 2000
-h = 1000
+w = 1200 
+h = 800
 screen = pygame.display.set_mode((w,h))
 pygame.display.set_caption('sorter')
-num = 1001
+num = 200
 arr = [random.randint(0,num - 2) for _ in range(num)]
 cycle = []
 

@@ -3,9 +3,7 @@ from pygame.display import update
 import pygame,sys,time
 class Sorting:
     arr = []
-    def __init__(self,fromx,fromy,width,height,screen,cycle):
-        self.fromx = fromx
-        self.fromy = fromy
+    def __init__(self,width,height,screen,cycle):
         self.width = width
         self.height = height
         self.screen = screen
@@ -17,15 +15,18 @@ class Sorting:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     return True
+            if event.type == pygame.VIDEORESIZE:
+                # There's some code to add back window content here.
+                print(event.h,event.w)
         return False
         
     def drawOnScreen(self,name,arr):
         self.screen.fill((0,0,0))
+        fromx = 0
         for k in arr:
             hei = self.height * k
-            pygame.draw.rect(self.screen,self.cycle[k],(self.fromx,self.y - hei,self.width,hei))
-            self.fromx += self.width 
-        self.fromx = 0
+            pygame.draw.rect(self.screen,self.cycle[k],(fromx,self.y - hei,self.width,hei))
+            fromx += self.width 
         font = pygame.font.Font('freesansbold.ttf',32)
         showName = font.render(name,True,(255,255,255))
         self.screen.blit(showName,(0,00))

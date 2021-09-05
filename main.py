@@ -6,23 +6,23 @@ from pygame.display import update
 from pygame.draw import rect
 import matplotlib.cm as cm
 import numpy as np
+
 # TODO : make the window resizable
 pygame.init()
 running = True
 w = 1200 
 h = 800
-screen = pygame.display.set_mode((w,h))
-pygame.display.set_caption('sorter')
-num = 200
+screen = pygame.display.set_mode((w,h),pygame.RESIZABLE)
+pygame.display.set_caption('Sorting Visualiser')
+num = 500
 arr = [random.randint(0,num - 2) for _ in range(num)]
 cycle = []
 
 maximum = max(arr)
-fromx = 0;xinc = 1
-fromy = 0;yinc = 1
-height = h // maximum
-width = w // maximum
-sortingClass = Sorting(fromx,fromy,width,height,screen,cycle)
+height = h / maximum
+width = int(w / num ) + 0.5
+print(width)
+sortingClass = Sorting(width,height,screen,cycle)
 isSorted = False
 func = sortingClass.bubbleSort
 def selectAlgo(_,i):
@@ -55,6 +55,9 @@ menu.add.dropselect('Algorithm :', [('Bubble Sort', 1), ('Insert Sort', 2),("Sel
 menu.add.dropselect('Color Scheme :', [('Rainbow', 1), ('Black / White', 2),("Summer",3),("Prism",4)], onchange=selectColor)
 menu.add.button('Quit', pygame_menu.events.EXIT) #type:ignore
 
+
+menu.enable()
+
 while running:
     menu.mainloop(screen)
     for event in pygame.event.get():
@@ -62,3 +65,8 @@ while running:
             running = False
         if event.type == pygame.KEYDOWN:
             running = False
+        if event.type == pygame.VIDEORESIZE:
+            # There's some code to add back window content here.
+            pygame.display.set_mode((event.w, event.h),pygame.RESIZABLE)
+            menu._window_size
+            
